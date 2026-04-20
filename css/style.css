@@ -336,3 +336,25 @@ img.feature-icon { font-size: 0; }
   .hero-seal { width: 140px; opacity: 0.28; }
   .feature-icon, .char-icon, .scene-icon { width: 56px; height: 56px; }
 }
+
+/* ===== 矢量图尺寸硬约束(第四刀补丁) ===== */
+.feature-icon {
+  width: 64px !important;
+  height: 64px !important;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 16px;
+}
+.char-icon, .scene-icon {
+  width: 128px !important;
+  height: 128px !important;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 16px;
+}
+
+/* 移动端更小 */
+@media (max-width: 768px) {
+  .feature-icon { width: 48px !important; height: 48px !important; }
+  .char-icon, .scene-icon { width: 96px !important; height: 96px !important; }
+}
