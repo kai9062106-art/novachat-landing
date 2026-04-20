@@ -16,6 +16,7 @@
   /* 背景与文字 */
   --bg: #faf6ef;            /* 米白纸色 */
   --bg-alt: #f0e9de;        /* 章节分段 */
+  --bg-dark: #2c2a26;       /* 深色背景 */
   --text: #2c2a26;
   --text-light: #6b6658;
   --border: #e3dccf;
@@ -158,16 +159,18 @@ h3 { font-family: var(--font-heading); font-weight: 700; }
 .section-header h2 { font-size:40px; margin-bottom:16px; }
 .section-header .section-sub { font-size:17px; color:var(--text-light); }
 .features-grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:32px;
-  max-width:1160px;
-  margin:0 auto;
-  padding:0 32px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  max-width: 1160px;
+  margin: 0 auto;
 }
+.feature-card { grid-column: span 2; } 
+.feature-card:nth-child(4) { grid-column: 2 / span 2; }
+.feature-card:nth-child(5) { grid-column: 4 / span 2; }
 .feature-card {
   background:white;
-  padding:32px;
+  padding:28px;
   border-radius:16px;
   border:1px solid var(--border);
   transition:all 0.3s;
@@ -212,7 +215,17 @@ h3 { font-family: var(--font-heading); font-weight: 700; }
   z-index: 1;
 }
 @media (max-width: 960px) {
-  .features-grid { grid-template-columns:1fr; gap:24px; padding:0 24px; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .feature-card,
+  .feature-card:nth-child(4),
+  .feature-card:nth-child(5) { grid-column: span 1; }
+}
+
+@media (max-width: 600px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .feature-card,
+  .feature-card:nth-child(4),
+  .feature-card:nth-child(5) { grid-column: span 1; }
   .section-header h2 { font-size:32px; }
   .feature-card { padding:28px; }
 }
@@ -357,8 +370,106 @@ img.feature-icon { font-size: 0; }
   margin: 0 auto 16px;
 }
 
+.hero-slogan-2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--ink-seal);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  margin: -8px 0 16px 0;
+  opacity: 0.85;
+}
+@media (max-width: 720px) {
+  .hero-slogan-2 { font-size: 18px; margin: -4px 0 12px 0; }
+}
+
 /* 移动端更小 */
 @media (max-width: 768px) {
   .feature-icon { width: 48px !important; height: 48px !important; }
   .char-icon, .scene-icon { width: 96px !important; height: 96px !important; }
 }
+
+/* ===== 三步开始 section ===== */
+.three-steps { padding: 80px 24px; background: var(--bg-alt, var(--bg)); }
+.three-steps .section-header { text-align: center; margin-bottom: 48px; }
+.three-steps .section-header h2 {
+  font-size: 32px; color: var(--text);
+  margin-bottom: 12px;
+  font-family: var(--font-heading);
+}
+.three-steps .section-header .section-sub {
+  font-size: 15px; color: var(--text-light);
+  font-family: var(--font-accent); letter-spacing: 0.04em;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.step-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px 28px 32px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.step-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(58, 90, 106, 0.12);
+}
+.step-card .step-num {
+  font-family: var(--font-display);
+  font-size: 44px;
+  color: var(--ink-seal);
+  line-height: 1;
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 6px 16px;
+  border: 2px solid var(--ink-seal);
+  border-radius: 4px;
+}
+.step-card h3 {
+  font-family: var(--font-heading);
+  font-size: 18px; font-weight: 700;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+.step-card p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-light);
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .steps-grid { grid-template-columns: 1fr; gap: 16px; }
+  .step-card { padding: 32px 20px 24px; }
+  .step-card .step-num { font-size: 36px; }
+}
+
+/* ===== 大按钮样式 ===== */
+.btn-large {
+  font-size: 18px;
+  padding: 14px 36px;
+  border-radius: 6px;
+}
+.cta-fallback {
+  margin-top: 20px;
+  color: var(--text-light);
+  font-size: 13px;
+}
+.cta-fallback a { color: var(--accent); }
+
+/* ===== Footer 链接样式 ===== */
+.footer-link {
+  color: var(--text-light);
+  font-size: 13px;
+  margin-left: 16px;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--text-light);
+}
+.footer-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
