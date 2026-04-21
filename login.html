@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c8412d">
+<title>登录 · NovaChat</title>
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+<main class="auth-wrap">
+  <section class="auth-card" aria-label="登录与注册">
+    <header class="brand">
+      <div class="brand-seal" aria-hidden="true">朱</div>
+      <h1 class="brand-title">NovaChat</h1>
+      <p class="brand-sub">把李白拉进群，或造一个你的群。</p>
+    </header>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="login" role="tab" aria-selected="true">登录</button>
+      <button class="tab" data-tab="register" role="tab" aria-selected="false">注册</button>
+    </div>
+
+    <form class="form form-login active" data-form="login" novalidate>
+      <label class="field">
+        <span class="field-label">邮箱</span>
+        <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
+      </label>
+      <label class="field">
+        <span class="field-label">密码</span>
+        <input type="password" name="password" placeholder="请输入密码" required autocomplete="current-password" minlength="6">
+      </label>
+      <div class="row">
+        <label class="remember"><input type="checkbox" name="remember"> 记住我</label>
+        <a href="#" class="link">忘记密码？</a>
+      </div>
+      <button type="submit" class="btn-primary">登录</button>
+      <p class="form-msg" role="status" aria-live="polite"></p>
+    </form>
+
+    <form class="form form-register" data-form="register" novalidate>
+      <label class="field">
+        <span class="field-label">邮箱</span>
+        <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
+      </label>
+      <label class="field">
+        <span class="field-label">密码</span>
+        <input type="password" name="password" placeholder="至少 6 位" required autocomplete="new-password" minlength="6">
+      </label>
+      <label class="field">
+        <span class="field-label">确认密码</span>
+        <input type="password" name="password2" placeholder="再输一次" required autocomplete="new-password" minlength="6">
+      </label>
+      <label class="agree">
+        <input type="checkbox" name="agree" required>
+        <span>我已阅读并同意 <a href="#" class="link">用户协议</a> 与 <a href="#" class="link">隐私政策</a></span>
+      </label>
+      <button type="submit" class="btn-primary">创建账号</button>
+      <p class="form-msg" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="divider"><span>其他方式（敬请期待）</span></div>
+    <div class="oauth">
+      <button class="oauth-btn" type="button" disabled title="敬请期待">
+        <span class="oauth-ico">💬</span> 微信
+      </button>
+      <button class="oauth-btn" type="button" disabled title="敬请期待">
+        <span class="oauth-ico">📱</span> 手机号
+      </button>
+    </div>
+
+    <p class="footer">© 2026 NovaPulse · <a href="/" class="link">返回首页</a></p>
+  </section>
+</main>
+<script src="js/login.js"></script>
+</body>
+</html>
