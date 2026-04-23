@@ -39,50 +39,52 @@
     </div>
   </nav>
 
-  <header class="hero">
-    <img src="assets/icons/deco-seal-hero.png" class="hero-seal" alt="">
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <span class="badge">NovaChat · Beta 内测中</span>
-        <h1>你终于能把李白拉进群了。</h1>
-        <p class="hero-slogan-2">或者,造一个专属于你的群。</p>
-        <p class="hero-sub">NovaChat · 像微信一样，把角色拉进你的聊天列表——他们会彼此接话、互相呛声，还会记得你是谁。</p>
-        <div class="hero-ctas">
-          <a href="https://tally.so/r/D4vbqj" target="_blank" rel="noopener" class="btn btn-primary">申请内测 →</a>
-          <a href="mailto:a9062106@novapulse.cn" class="btn btn-ghost">联系开发者</a>
+  <header class="hero" id="hero">
+    <canvas id="inkCanvas"></canvas>
+    <div class="hero-content">
+      <img src="assets/icons/deco-seal-hero.png" class="hero-seal" alt="">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="badge">NovaChat · Beta 内测中</span>
+          <h1>你终于能把李白拉进群了。</h1>
+          <p class="hero-slogan-2">或者,造一个专属于你的群。</p>
+          <p class="hero-sub">NovaChat · 像微信一样，把角色拉进你的聊天列表——他们会彼此接话、互相呛声，还会记得你是谁。</p>
+          <div class="hero-ctas">
+            <a href="https://tally.so/r/D4vbqj" target="_blank" rel="noopener" class="btn btn-primary">申请内测 →</a>
+            <a href="mailto:a9062106@novapulse.cn" class="btn btn-ghost">联系开发者</a>
+          </div>
+          <div class="hero-pillars">
+            <div class="pillar">
+              <div class="pillar-num">壹</div>
+              <div class="pillar-body">
+                <div class="pillar-title">一群角色，不是一个</div>
+                <div class="pillar-desc">他们会附和、反对、吃醋、引旧账，像真实的群。</div>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-num">贰</div>
+              <div class="pillar-body">
+                <div class="pillar-title">你的身份决定他们怎么看你</div>
+                <div class="pillar-desc">同一句话，以「清客」身份说和以「文人」身份说，群里反应不一样。</div>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-num">叁</div>
+              <div class="pillar-body">
+                <div class="pillar-title">让群聊自己聊起来</div>
+                <div class="pillar-desc">谁接话、谁沉默、谁打断，由戏剧节奏决定。</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="hero-pillars">
-          <div class="pillar">
-            <div class="pillar-num">壹</div>
-            <div class="pillar-body">
-              <div class="pillar-title">一群角色，不是一个</div>
-              <div class="pillar-desc">他们会附和、反对、吃醋、引旧账，像真实的群。</div>
+        <div class="hero-phone">
+          <div class="phone">
+            <div class="phone-header">大观园诗社</div>
+            <div class="phone-body"></div>
+            <div class="phone-input">
+              <input type="text" placeholder="说点什么…" disabled>
+              <button disabled>发送</button>
             </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-num">贰</div>
-            <div class="pillar-body">
-              <div class="pillar-title">你的身份决定他们怎么看你</div>
-              <div class="pillar-desc">同一句话，以「清客」身份说和以「文人」身份说，群里反应不一样。</div>
-            </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-num">叁</div>
-            <div class="pillar-body">
-              <div class="pillar-title">让群聊自己聊起来</div>
-              <div class="pillar-desc">谁接话、谁沉默、谁打断，由戏剧节奏决定。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-phone">
-        <div class="phone">
-          <div class="phone-header">大观园诗社</div>
-          <div class="phone-body">
-            <div class="msg msg-left"><span class="name">林黛玉</span><p>花谢花飞飞满天，红消香断有谁怜？</p></div>
-            <div class="msg msg-left"><span class="name">薛宝钗</span><p>颦儿这首起句便压众人了。</p></div>
-            <div class="msg msg-right"><p>我在旁看着，已经不敢出声。</p></div>
-            <div class="msg msg-left typing"><span class="name">贾宝玉</span><p>正在输入…</p></div>
           </div>
         </div>
       </div>
@@ -96,22 +98,22 @@
       <p class="section-sub">不是一问一答的工具，而是一个可以"加群"的 AI 世界。</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card" data-char="群">
+      <div class="feature-card reveal-left reveal-stagger" data-char="群">
         <img src="assets/icons/feature-01-chat.png" class="feature-icon" alt="微信同款体验">
         <h3>微信同款体验</h3>
         <p>气泡、列表、输入法——所有交互都是你已经会的，角色直接住进你的聊天列表。</p>
       </div>
-      <div class="feature-card" data-char="我">
+      <div class="feature-card reveal-left reveal-stagger" data-char="我">
         <img src="assets/icons/feature-02-persona.png" class="feature-icon" alt="Persona 账号">
         <h3>Persona = 账号</h3>
         <p>用不同 Persona（清客 / 文人 / 侠客 / 书童）登录同一个群，角色对你的态度、称呼、记忆全部不一样。</p>
       </div>
-      <div class="feature-card" data-char="戏">
+      <div class="feature-card reveal-left reveal-stagger" data-char="戏">
         <img src="assets/icons/feature-03-director.png" class="feature-icon" alt="导演 AI 调度">
         <h3>导演 AI 调度</h3>
         <p>决定谁接话、谁沉默、谁打断，让群聊有戏剧节奏，而不是轮流报菜名。</p>
       </div>
-      <div class="feature-card" data-char="预">
+      <div class="feature-card reveal-left reveal-stagger" data-char="预">
           <div class="feature-icon persona-pack-icon">
             <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
               <g fill="none" stroke="#a83232" stroke-width="2">
@@ -131,13 +133,22 @@
           <h3>预设 Persona 包</h3>
           <p>不想从零捏身份？官方备好清客 / 文人 / 侠客 / 书童四个模板，进去就能用。</p>
         </div>
-      <div class="feature-card" data-char="红">
+      <div class="feature-card reveal-left reveal-stagger" data-char="红">
         <img src="assets/icons/feature-04-redchamber.png" class="feature-icon" alt="题材聚焦红楼">
         <h3>题材聚焦·红楼</h3>
         <p>首批聚焦《红楼梦》：宝黛钗、十二钗、丫鬟层——场景群直接还原。</p>
       </div>
     </div>
+    <div class="persona-demo reveal-right">
+      <div class="persona-tabs">
+        <button class="persona-tab active" data-persona="qingke">清客</button>
+        <button class="persona-tab" data-persona="wenren">文人</button>
+      </div>
+      <div class="persona-chat-area" id="personaChatArea"></div>
+    </div>
   </section>
+
+  <div class="typewriter-line reveal" data-text="满纸荒唐言，一把辛酸泪。都云作者痴，谁解其中味。"></div>
 
   <section class="three-steps" id="start">
     <div class="section-divider"><img src="assets/icons/deco-seal-divider.png" alt=""></div>
@@ -146,19 +157,19 @@
       <p class="section-sub">没有复杂配置，也不用氪金，进去就能聊。</p>
     </div>
     <div class="steps-grid">
-      <div class="step-card">
+      <div class="step-card reveal reveal-stagger">
         <div class="step-icon">🌍</div>
         <div class="step-num-small">① STEP</div>
         <h3>选一个世界</h3>
         <p>红楼大观园、长安酒肆、异世界城镇……官方预设开箱即用，也可以自己写。</p>
       </div>
-      <div class="step-card">
+      <div class="step-card reveal reveal-stagger">
         <div class="step-icon">👥</div>
         <div class="step-num-small">② STEP</div>
         <h3>挑几个角色</h3>
         <p>从官方角色库拉人进群，或者把你脑中的 OC 现场捏出来。</p>
       </div>
-      <div class="step-card">
+      <div class="step-card reveal reveal-stagger">
         <div class="step-icon">💬</div>
         <div class="step-num-small">③ STEP</div>
         <h3>打个招呼</h3>
@@ -173,10 +184,10 @@
       <h2 class="section-title">典型场景</h2>
       <p class="section-sub">几个有代表性的玩法切片。</p>
       <div class="scenes">
-        <div class="scene-card scene-pink"><img src="assets/icons/scene-poetry.png" class="scene-icon" alt="大观园诗社群"><h3>大观园诗社群</h3><p>宝黛钗探湘结社，你以「清客」的身份旁观《葬花吟》如何落笔。</p></div>
-        <div class="scene-card scene-orange"><img src="assets/icons/scene-moonwine.png" class="scene-icon" alt="月下独酌"><h3>月下独酌</h3><p>单聊李白，从"举杯邀明月"聊到长安米贵，看他醉后编段子。</p></div>
-        <div class="scene-card scene-red"><img src="assets/icons/scene-courtyard.png" class="scene-icon" alt="怡红院日常"><h3>怡红院日常</h3><p>袭人晴雯麝月斗嘴，丫鬟层的烟火气里看贾府缩影。</p></div>
-        <div class="scene-card scene-blue"><img src="assets/icons/scene-jianghu.png" class="scene-icon" alt="你自己的江湖"><h3>你自己的江湖</h3><p>塞拉菲娜 + 阿龙 + 你的「侠客」，东西方奇幻碰撞的即兴桥段。</p></div>
+        <div class="scene-card scene-pink reveal-scale reveal-stagger"><img src="assets/icons/scene-poetry.png" class="scene-icon" alt="大观园诗社群"><h3>大观园诗社群</h3><p>宝黛钗探湘结社，你以「清客」的身份旁观《葬花吟》如何落笔。</p></div>
+        <div class="scene-card scene-orange reveal-scale reveal-stagger"><img src="assets/icons/scene-moonwine.png" class="scene-icon" alt="月下独酌"><h3>月下独酌</h3><p>单聊李白，从"举杯邀明月"聊到长安米贵，看他醉后编段子。</p></div>
+        <div class="scene-card scene-red reveal-scale reveal-stagger"><img src="assets/icons/scene-courtyard.png" class="scene-icon" alt="怡红院日常"><h3>怡红院日常</h3><p>袭人晴雯麝月斗嘴，丫鬟层的烟火气里看贾府缩影。</p></div>
+        <div class="scene-card scene-blue reveal-scale reveal-stagger"><img src="assets/icons/scene-jianghu.png" class="scene-icon" alt="你自己的江湖"><h3>你自己的江湖</h3><p>塞拉菲娜 + 阿龙 + 你的「侠客」，东西方奇幻碰撞的即兴桥段。</p></div>
       </div>
     </div>
   </section>
@@ -196,7 +207,7 @@
 
   <section id="contact" class="section section-dark">
     <div class="section-divider"><img src="assets/icons/deco-seal-divider.png" alt=""></div>
-    <div class="container contact-inner">
+    <div class="container contact-inner reveal">
       <h2>想第一时间体验 NovaChat？</h2>
       <p>内测名额有限，独立开发节奏，欢迎直接发邮件聊聊。</p>
       <a href="https://tally.so/r/D4vbqj" target="_blank" rel="noopener" class="btn btn-primary btn-large">
@@ -219,6 +230,7 @@
     </div>
   </footer>
 
+  <script src="js/chat-demo.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

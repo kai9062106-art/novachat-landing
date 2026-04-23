@@ -1,29 +1,42 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  /* 主色：水墨青（去微信化） */
-  --primary: #3a5a6a;
-  --primary-light: #5e7e8c;
-  --primary-hover: #2d4854;
+  /* 主色 */
+  --ink-dark: #1a1a2e;        /* 深夜墨 · Hero 背景 */
+  --ink-blue: #3a5a6a;        /* 水墨青 · 标题/正文 */
+  --ink-blue-light: #4a7a8a;  /* 浅水墨青 · 次要文字 */
 
-  /* 点缀：胭脂 — 用于 CTA / persona badge / 关键强调 */
-  --accent: #c85a54;
-  --accent-light: #d97b75;
+  /* 点缀 */
+  --rouge: #c85a54;           /* 胭脂 · CTA 按钮/高亮 */
+  --rouge-hover: #d4706a;     /* 胭脂悬停 */
+  --ochre: #b4744a;           /* 赭石 · 辅助色 */
 
-  /* 辅色：赭石 — 古风置顶 / 分隔 */
-  --secondary: #b4744a;
-  --secondary-light: #d8a478;
+  /* 背景层 */
+  --bg-hero: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 40%, #2a2a3e 100%);
+  --bg-body: #f5f0e8;         /* 宣纸米 · 主体背景 */
+  --bg-card: #fffaf3;         /* 暖白 · 卡片背景 */
 
-  /* 背景与文字 */
-  --bg: #faf6ef;            /* 米白纸色 */
-  --bg-alt: #f0e9de;        /* 章节分段 */
-  --bg-dark: #2c2a26;       /* 深色背景 */
-  --text: #2c2a26;
-  --text-light: #6b6658;
-  --border: #e3dccf;
+  /* 气泡 */
+  --bubble-ai: #fffaf3;       /* AI 气泡 · 淡米黄 */
+  --bubble-user: #e8f0f0;     /* 用户气泡 · 淡水墨青 */
 
-  /* 气泡色（如果落地页有演示对话） */
-  --bubble-user: #d8e4e8;   /* 淡水墨青 */
-  --bubble-ai: #f5efe4;     /* 淡米黄 */
+  /* 文字 */
+  --text-primary: #2a2a2a;
+  --text-secondary: #6a6a6a;
+  --text-on-dark: #e8e0d0;    /* 暗底上的亮色字 */
+
+  /* 动画 */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-msg: 600ms;
+
+  /* 字体 */
+  --font-display: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+  --font-heading: 'Noto Serif SC', 'PingFang SC', serif;
+  --font-body: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  --font-accent: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+
+  /* 朱印色 */
+  --ink-seal: #a83232;
+  --ink-seal-soft: #c45d5d;
 
   /* 场景色（换古风调子） */
   --scene-pink: #f5dfd8;
@@ -31,20 +44,25 @@
   --scene-red: #eccfc6;
   --scene-blue: #d8dfe4;
 
-  /* 字体 */
-  --font-display: 'Ma Shan Zheng', 'Noto Serif SC', serif;
-  --font-heading: 'Noto Serif SC', 'PingFang SC', serif;
-  --font-body: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
-  --font-accent: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
-  
-  /* 朱印色 */
-  --ink-seal: #a83232;
-  --ink-seal-soft: #c45d5d;
-
-  /* 尺寸保留，不要动 */
+  /* 尺寸保留 */
   --container-max: 1120px;
   --radius: 12px;
   --radius-lg: 20px;
+
+  /* 向后兼容别名（后续刀次逐步移除） */
+  --primary: var(--ink-blue);
+  --primary-light: var(--ink-blue-light);
+  --primary-hover: #2d4854;
+  --accent: var(--rouge);
+  --accent-light: var(--rouge-hover);
+  --secondary: var(--ochre);
+  --secondary-light: #d8a478;
+  --bg: var(--bg-body);
+  --bg-alt: #f0e9de;
+  --bg-dark: var(--ink-dark);
+  --text: var(--text-primary);
+  --text-light: var(--text-secondary);
+  --border: #e3dccf;
 }
 
 /* 全局字体规则 */
@@ -75,7 +93,29 @@ h3 { font-family: var(--font-heading); font-weight: 700; }
 .nav-cta:hover { background:var(--primary-light); }
 
 /* Hero */
-.hero { padding: 0; background: var(--bg); position: relative; overflow: hidden; }
+.hero { 
+  padding: 0; 
+  background: var(--bg-hero); 
+  position: relative; 
+  overflow: hidden; 
+  min-height: 100vh;
+}
+
+#inkCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 400px;
@@ -130,19 +170,80 @@ h3 { font-family: var(--font-heading); font-weight: 700; }
 
 /* Phone mock */
 .hero-phone { display:flex; justify-content:center; }
-.phone { width:320px; background:#f0ece8; border-radius:28px; box-shadow:0 24px 48px rgba(58, 90, 106, 0.16), 0 8px 16px rgba(44, 42, 38, 0.08); border: 2px solid #2c2a26; overflow:hidden; }
-.phone-header { background:#ede9e3; padding:18px; font-weight:600; text-align:center; border-bottom:1px solid #e0dcd4; }
-.phone-body { padding:16px 12px; min-height:380px; display:flex; flex-direction:column; gap:10px; background:#ebe7e2; }
+.phone {
+  width:320px;
+  background: var(--bg-card, #fffaf3);
+  border-radius:28px;
+  box-shadow:0 24px 48px rgba(26, 26, 46, 0.16), 0 8px 16px rgba(44, 42, 38, 0.08);
+  border: 2px solid var(--ink-dark, #1a1a2e);
+  overflow:hidden;
+}
+.phone-header {
+  background: linear-gradient(180deg, #2a2a3e 0%, #1a1a2e 100%);
+  padding:18px;
+  font-weight:600;
+  text-align:center;
+  color: var(--text-on-dark, #e8e0d0);
+  font-family: var(--font-accent);
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--ink-dark, #1a1a2e);
+}
+.phone-body { padding:16px 12px; min-height:380px; display:flex; flex-direction:column; gap:10px; background: var(--bg-body, #f5f0e8); }
 .msg { display:flex; flex-direction:column; max-width:75%; }
 .msg .name { font-size:11px; color:#888; margin-bottom:4px; padding:0 4px; }
 .msg p { padding:10px 14px; border-radius:12px; font-size:14px; line-height:1.5; }
 .msg-left { align-self:flex-start; }
-.msg-left p { background:white; color:var(--text); }
+.msg-left p { background: var(--bubble-ai, #fffaf3); color:var(--text-primary); }
 .msg-right { align-self:flex-end; }
-.msg-right p { background:#95ec69; color:var(--text); }
+.msg-right p { background: var(--bubble-user, #e8f0f0); color:var(--text-primary); }
 .typing p { color:#999; font-style:italic; }
 .typing { animation:pulse 1.5s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
+
+/* Phone input area */
+.phone-input {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: #ede9e3;
+  border-top: 1px solid #e0dcd4;
+}
+.phone-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #d8d4cc;
+  border-radius: 20px;
+  font-size: 14px;
+  background: white;
+  color: var(--text);
+}
+.phone-input input::placeholder { color: #aaa; }
+.phone-input button {
+  padding: 10px 16px;
+  background: var(--ink-blue);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Message animation */
+.msg {
+  animation: msgAppear var(--duration-msg, 600ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1)) both;
+}
+@keyframes msgAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* Sections */
 .section { padding:96px 0; }
@@ -500,4 +601,469 @@ img.feature-icon { font-size: 0; }
 @media (max-width: 720px) {
   .section-divider img { width: 44px; }
   .section-divider { margin-bottom: 24px; }
+}
+
+.persona-demo {
+  max-width: 480px;
+  margin: 48px auto 0;
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.persona-tabs { display: flex; gap: 12px; margin-bottom: 20px; }
+.persona-tab {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 2px solid var(--ink-blue);
+  background: transparent;
+  color: var(--ink-blue);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.persona-tab.active { background: var(--ink-blue); color: white; }
+.persona-chat-area { transition: opacity 0.3s ease, transform 0.3s ease; }
+.persona-chat-area.fade-out { opacity: 0; transform: translateY(8px); }
+.persona-chat-area.fade-in { opacity: 1; transform: translateY(0); }
+.persona-msg-user { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+.persona-msg-user .bubble {
+  background: var(--bubble-user);
+  border-radius: 12px 0 12px 12px;
+  padding: 8px 14px;
+  font-size: 14px;
+}
+.persona-msg-ai { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 10px; }
+.persona-msg-ai .bubble {
+  background: var(--bubble-ai);
+  border-radius: 0 12px 12px 12px;
+  padding: 8px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.persona-msg-ai .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.speaker-name {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+/* 滚动触发动画 */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out-quart),
+              transform 0.8s var(--ease-out-quart);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s var(--ease-out-quart),
+              transform 0.8s var(--ease-out-quart);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s var(--ease-out-quart),
+              transform 0.8s var(--ease-out-quart);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.6s var(--ease-out-quart),
+              transform 0.6s var(--ease-out-quart);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal-stagger:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger:nth-child(3) { transition-delay: 0.24s; }
+.reveal-stagger:nth-child(4) { transition-delay: 0.36s; }
+.reveal-stagger:nth-child(5) { transition-delay: 0.48s; }
+
+/* 打字机效果 */
+.typewriter-line {
+  font-size: 18px;
+  color: var(--ink-blue-light);
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 1.5em;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+/* 头像裁剪：取顶部居中区域显示为 32x32 */
+.demo-msg .avatar,
+.persona-msg-ai .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  object-fit: cover;
+  object-position: top center;
+}
+/* ===== Phone Mock 修复 ===== */
+.phone {
+  width: 340px;
+  height: 520px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.phone-header {
+  background: #3a5a6a;
+  color: white;
+  padding: 12px 16px;
+  font-size: 15px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.phone-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f5f0e8;
+}
+
+.phone-input {
+  padding: 10px 12px;
+  border-top: 1px solid #e0d8c8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.phone-input input {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.phone-input button {
+  color: #c85a54;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 印章缩小 */
+.hero-seal {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  width: 80px;
+  height: 80px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .phone {
+    width: 100%;
+    max-width: 340px;
+    height: 420px;
+    margin: 24px auto 0;
+  }
+  .hero-seal {
+    width: 50px;
+    height: 50px;
+    right: 20px;
+    top: 20px;
+  }
+}
+/* 消息头像 + 横排布局 */
+.msg { flex-direction: row !important; align-items: flex-start !important; gap: 8px; }
+.msg-avatar { width: 32px; height: 32px; border-radius: 6px; object-fit: cover; object-position: top center; flex-shrink: 0; }
+.msg-content { flex: 1; min-width: 0; }
+/* 正在输入动画 */
+.typing-text { display: flex !important; gap: 4px; align-items: center; padding: 10px 14px; background: var(--bubble-ai, #fffaf3); border-radius: 12px; }
+.typing-text .dot { width: 6px; height: 6px; border-radius: 50%; background: #999; animation: dotBounce 1.4s infinite; }
+.typing-text .dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-text .dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dotBounce { 0%,60%,100%{transform:translateY(0);opacity:0.4;} 30%{transform:translateY(-6px);opacity:1;} }
+
+/* ==================== knife 6 · Hero 暖墨褐 + 水墨纹理叠层 ==================== */
+
+/* 1. Hero 色温：冷蓝紫 → 暖墨褐（覆盖原 --bg-hero，后定义胜出，无需 !important） */
+:root {
+  --bg-hero: linear-gradient(180deg, #15100c 0%, #221812 40%, #3d2e22 80%, #4a3a2a 100%);
+  --ink-dark: #1a1410;
+}
+
+/* 2. Hero 容器：确保定位上下文 + 溢出裁剪，为 ::before 铺垫 */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 3. 水墨纹理叠层 —— soft-light 混合，弱透明，不抢内容 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/ink-texture.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 4. Hero 所有直接子元素（粒子 canvas、Slogan 容器、CTA、手机框等）都压在纹理之上 */
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==================== knife 6.1 · Hero 整屏浅宣纸（覆盖 6.0） ==================== */
+
+/* 1. Hero 主背景：回到浅宣纸体系，去掉脏棕压迫感 */
+:root {
+  --bg-hero: linear-gradient(180deg, #f7f1e7 0%, #f3ebdf 58%, #efe4d3 100%);
+  --text-on-dark: #2a2118;
+}
+
+/* 2. Hero 容器本体：轻微暖底，不再走深色大底 */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,250,243,0.92) 0%, rgba(245,236,224,0.92) 100%);
+}
+
+/* 3. 把上一刀重纹理彻底压淡，保留若有若无的纸感 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/ink-texture.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 4. 在 Hero 底部补一层极轻的暖雾，帮助和正文自然衔接 */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 180px;
+  background: linear-gradient(180deg, rgba(239,228,211,0) 0%, rgba(239,228,211,0.65) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 5. Hero 内容全部压到纹理之上 */
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==================== knife 6.2 · Hero 浅宣纸精修 ==================== */
+
+/* 1. Hero 去黄雾：把整屏暖雾和纹理感继续压淡，回到更干净的宣纸 */
+.hero {
+  background: linear-gradient(180deg, rgba(250,245,237,0.96) 0%, rgba(246,239,230,0.94) 58%, rgba(242,234,223,0.92) 100%);
+}
+
+.hero::before {
+  opacity: 0.022;
+}
+
+.hero::after {
+  height: 120px;
+  background: linear-gradient(180deg, rgba(239,228,211,0) 0%, rgba(239,228,211,0.32) 100%);
+}
+
+/* 2. Hero 正文提对比：说明文案、卖点文案不要再发飘 */
+.hero p,
+.hero li,
+.hero .hero-description,
+.hero .hero-copy,
+.hero .hero-features,
+.hero .hero-features p {
+  color: #4a4036;
+}
+
+/* 3. 主标题和红色副标题稳住对比，避免浅底上发灰 */
+.hero h1,
+.hero h2,
+.hero h3 {
+  color: #16110d;
+}
+
+.hero .hero-subtitle,
+.hero .subtitle,
+.hero .accent-text {
+  color: #b5524c;
+}
+
+/* 4. Beta 条：从“长空框”收成更像 badge 的视觉 */
+.hero .beta-tag,
+.hero .hero-badge,
+.hero .announcement-bar,
+.hero .top-badge {
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 250, 243, 0.78);
+  border: 1px solid rgba(200, 90, 84, 0.42);
+  color: #b5524c;
+  box-shadow: 0 4px 14px rgba(90, 60, 40, 0.06);
+}
+
+/* 5. 如果 Beta 条实际是一个普通段落 / div，给常见类名兜底；命不中也无害 */
+.hero .beta,
+.hero .badge,
+.hero .hero-top-note {
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 250, 243, 0.78);
+  border: 1px solid rgba(200, 90, 84, 0.42);
+  color: #b5524c;
+}
+
+/* 6. 次按钮在浅底上更清楚一点，但不加花活 */
+.hero .btn-secondary,
+.hero .cta-secondary {
+  border-color: rgba(74, 64, 54, 0.22);
+  color: #5a4636;
+  background: rgba(255, 250, 243, 0.72);
+}
+
+/* 7. 底部 CTA 深色区改回浅宣纸体系，消灭页面下半段割裂 */
+.cta-section,
+.final-cta,
+.contact-cta,
+.join-cta,
+section.cta {
+  background: linear-gradient(180deg, #f5eee3 0%, #efe5d7 100%);
+  color: #201813;
+}
+
+.cta-section h2,
+.final-cta h2,
+.contact-cta h2,
+.join-cta h2,
+section.cta h2 {
+  color: #201813;
+}
+
+.cta-section p,
+.final-cta p,
+.contact-cta p,
+.join-cta p,
+section.cta p,
+.cta-section a,
+.final-cta a,
+.contact-cta a,
+.join-cta a,
+section.cta a {
+  color: #5a4636;
+}
+
+/* ==================== knife 6.3 · 手机框右侧空白带修复 ==================== */
+
+/* 1. 收窄 phone-body 右侧空白感：右 padding 略缩，给滚动条留更少视觉存在感 */
+.phone-body {
+  padding: 12px 8px 12px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(90, 70, 54, 0.34) transparent;
+}
+
+/* 2. WebKit 滚动条瘦身，别再切出一整条白带 */
+.phone-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.phone-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.phone-body::-webkit-scrollbar-thumb {
+  background: rgba(90, 70, 54, 0.28);
+  border-radius: 999px;
+}
+
+/* 3. 消息泡最大宽度放宽：75% → 86%，减少右侧大片闲置空间 */
+.msg {
+  max-width: 86%;
+}
+
+/* 4. 泡泡内容别超容器，保持换行稳定 */
+.msg p {
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* 5. 输入栏做轻微收边，保证和消息区宽度观感更统一 */
+.phone-input {
+  padding: 10px 10px 12px 10px;
+}
+
+.phone-input input {
+  min-width: 0;
+}
+
+.phone-input button {
+  flex-shrink: 0;
 }
